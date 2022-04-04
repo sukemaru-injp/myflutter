@@ -52,6 +52,45 @@ class _RandomWordsState extends State<RandomWords> {
   }
 }
 
+// favorite Widget
+
+class FavoriteWidget extends StatefulWidget {
+  const FavoriteWidget({Key? key}) : super(key: key);
+
+  @override
+  _FavoriteWidgetState createState() => _FavoriteWidgetState();
+}
+
+class _FavoriteWidgetState extends State<FavoriteWidget> {
+  bool _isFavorited = true;
+  int _favoriteCount = 41;
+
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          padding: const EdgeInsets.all(0),
+          child: IconButton(
+            padding: const EdgeInsets.all(0),
+            alignment: Alignment.centerRight,
+            color: Colors.red[500],
+            icon: (_isFavorited
+                ? const Icon(Icons.star)
+                : const Icon(Icons.star_border)),
+            onPressed: () {},
+          ),
+        ),
+        SizedBox(
+            width: 18,
+            child: SizedBox(
+              child: Text('$_favoriteCount'),
+            ))
+      ],
+    );
+  }
+}
+
 // LayoutTest View
 class LayoutTest extends StatefulWidget {
   const LayoutTest({Key? key}) : super(key: key);
@@ -61,6 +100,8 @@ class LayoutTest extends StatefulWidget {
 
 class _LayOutState extends State<LayoutTest> {
   @override
+  bool _isFavorited = true;
+  int _favoriteCount = 41;
   Column _buildButtonColumn(Color color, IconData icon, String label) {
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -97,6 +138,29 @@ class _LayOutState extends State<LayoutTest> {
           softWrap: true,
         ));
 
+    Widget titleSection = Container(
+        padding: const EdgeInsets.all(25),
+        child: Row(children: [
+          Expanded(
+              child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: const Text('テムズ川',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontStyle: FontStyle.italic,
+                          color: Colors.red))),
+              Text('ロンドンとウェストミンターを繋いでいる',
+                  style: TextStyle(color: Colors.grey[500]))
+            ],
+          )),
+          const FavoriteWidget()
+          // Icon(Icons.star, color: Colors.red[500]),
+          // const Text('41'),
+        ]));
+
     return Scaffold(
         appBar: AppBar(
           title: const Text('Flutter layout demo'),
@@ -112,24 +176,3 @@ class _LayOutState extends State<LayoutTest> {
         ));
   }
 }
-
-Widget titleSection = Container(
-    padding: const EdgeInsets.all(25),
-    child: Row(children: [
-      Expanded(
-          child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-              padding: const EdgeInsets.only(bottom: 8),
-              child: const Text('テムズ川',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontStyle: FontStyle.italic,
-                      color: Colors.red))),
-          Text('ロンドンとウェストミンターを繋いでいる', style: TextStyle(color: Colors.grey[500]))
-        ],
-      )),
-      Icon(Icons.star, color: Colors.red[500]),
-      const Text('41'),
-    ]));

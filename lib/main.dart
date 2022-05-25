@@ -12,167 +12,34 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'Startup Name Generator',
-      home: LayoutTest(),
+      home: FirstFlutter(),
     );
   }
 }
 
 // First Test View
-class RandomWords extends StatefulWidget {
-  const RandomWords({Key? key}) : super(key: key);
+class FirstFlutter extends StatefulWidget {
+  const FirstFlutter({Key? key}) : super(key: key);
 
   @override
-  _RandomWordsState createState() => _RandomWordsState();
+  _FirstState createState() => _FirstState();
 }
 
-class _RandomWordsState extends State<RandomWords> {
+class _FirstState extends State<FirstFlutter> {
   @override
   Widget build(BuildContext context) {
-    final _suggestions = <WordPair>[];
-    final _biggerFont = const TextStyle(fontSize: 18.0);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Flutter layout demo'),
+        title:
+            Row(children: [Icon(Icons.car_repair_sharp), Text('FirstFlutter')]),
       ),
-      body: ListView.builder(
-          padding: const EdgeInsets.all(16.0),
-          itemBuilder: /*1*/ (context, i) {
-            if (i.isOdd) return const Divider(); /*2*/
-            final index = i ~/ 2; /*3*/
-            if (index >= _suggestions.length) {
-              _suggestions.addAll(generateWordPairs().take(10)); /*4*/
-            }
-            return ListTile(
-                title: Text(
-              _suggestions[index].asPascalCase,
-              style: _biggerFont,
-            ));
-          }),
+      body: Column(
+        children: [
+          Text('Test!'),
+          Text('Test2'),
+          TextButton(onPressed: () => {print('Test')}, child: Text('Ok'))
+        ],
+      ),
     );
-  }
-}
-
-// favorite Widget
-
-class FavoriteWidget extends StatefulWidget {
-  const FavoriteWidget({Key? key}) : super(key: key);
-
-  @override
-  _FavoriteWidgetState createState() => _FavoriteWidgetState();
-}
-
-class _FavoriteWidgetState extends State<FavoriteWidget> {
-  bool _isFavorited = true;
-  int _favoriteCount = 41;
-
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Container(
-          padding: const EdgeInsets.all(0),
-          child: IconButton(
-            padding: const EdgeInsets.all(0),
-            alignment: Alignment.centerRight,
-            color: Colors.red[500],
-            icon: (_isFavorited
-                ? const Icon(Icons.star)
-                : const Icon(Icons.star_border)),
-            onPressed: () {},
-          ),
-        ),
-        SizedBox(
-            width: 18,
-            child: SizedBox(
-              child: Text('$_favoriteCount'),
-            ))
-      ],
-    );
-  }
-}
-
-// LayoutTest View
-class LayoutTest extends StatefulWidget {
-  const LayoutTest({Key? key}) : super(key: key);
-  @override
-  _LayOutState createState() => _LayOutState();
-}
-
-class _LayOutState extends State<LayoutTest> {
-  @override
-  bool _isFavorited = true;
-  int _favoriteCount = 41;
-  Column _buildButtonColumn(Color color, IconData icon, String label) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Icon(icon, color: color),
-        Container(
-            margin: const EdgeInsets.only(top: 8),
-            child: Text(label,
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w400,
-                  color: color,
-                )))
-      ],
-    );
-  }
-
-  Widget build(BuildContext context) {
-    Color color = Theme.of(context).primaryColorDark;
-    Widget buttonSection = Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        _buildButtonColumn(color, Icons.call, 'CALL'),
-        _buildButtonColumn(color, Icons.near_me, 'ROUTE'),
-        _buildButtonColumn(color, Icons.share, 'SHARE')
-      ],
-    );
-
-    Widget textSection = const Padding(
-        padding: EdgeInsets.all(30),
-        child: Text(
-          "テムズ川は長さ346キロメートルある南イングランドを流れる川で、下流でロンドンと海をつないでいます。川にはたくさん有名な橋が架かっており、その中でもタワーブリッジやミレニアムブリッジ、ロンドン橋は世界的にも有名な観光地です。川のほとりを進めば、エリザベスタワーやロンドンアイ、ロンドン塔など様々な観光名所があります。ロンドンを舞台にした小説や劇、テレビドラマなどにたびたび登場しています。",
-          softWrap: true,
-        ));
-
-    Widget titleSection = Container(
-        padding: const EdgeInsets.all(25),
-        child: Row(children: [
-          Expanded(
-              child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                  padding: const EdgeInsets.only(bottom: 8),
-                  child: const Text('テムズ川',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontStyle: FontStyle.italic,
-                          color: Colors.red))),
-              Text('ロンドンとウェストミンターを繋いでいる',
-                  style: TextStyle(color: Colors.grey[500]))
-            ],
-          )),
-          const FavoriteWidget()
-          // Icon(Icons.star, color: Colors.red[500]),
-          // const Text('41'),
-        ]));
-
-    return Scaffold(
-        appBar: AppBar(
-          title: const Text('Flutter layout demo'),
-        ),
-        body: ListView(
-          children: [
-            Image.asset('assets/london-min.png',
-                height: 240, width: 600, fit: BoxFit.cover),
-            titleSection,
-            buttonSection,
-            textSection
-          ],
-        ));
   }
 }

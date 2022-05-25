@@ -33,12 +33,20 @@ class _FirstState extends State<FirstFlutter> {
         title:
             Row(children: [Icon(Icons.car_repair_sharp), Text('FirstFlutter')]),
       ),
+      drawer: Drawer(
+          child: Center(
+        child: Text('drawer'),
+      )),
       body: Column(
         children: [
           Text('Test!'),
           Text('Test2'),
-          TextButton(onPressed: () => {print('Test')}, child: Text('Ok'))
+          TextButton(onPressed: () => {print('Test')}, child: Text('Ok')),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => {print('Test')},
+        child: Icon(Icons.tiktok),
       ),
     );
   }

@@ -22,10 +22,18 @@ class FirstFlutter extends StatefulWidget {
   const FirstFlutter({Key? key}) : super(key: key);
 
   @override
-  _FirstState createState() => _FirstState();
+  _MyHomeFirstState createState() => _MyHomeFirstState();
 }
 
-class _FirstState extends State<FirstFlutter> {
+class _MyHomeFirstState extends State<FirstFlutter> {
+  int _counter = 0;
+
+  void _increment() {
+    setState(() {
+      _counter++;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,11 +49,13 @@ class _FirstState extends State<FirstFlutter> {
         children: [
           Text('Test!'),
           Text('Test2'),
+          Text('$_counter'),
           TextButton(onPressed: () => {print('Test')}, child: Text('Ok')),
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => {print('Test')},
+        onPressed: () => _increment(),
+        tooltip: 'Increment',
         child: Icon(Icons.tiktok),
       ),
     );

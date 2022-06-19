@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 // import 'package:url_launcher/url_launcher.dart';
+import 'package:myflutter/pages/test1.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +18,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// First Test View
 class FirstFlutter extends StatefulWidget {
   const FirstFlutter({Key? key}) : super(key: key);
 
@@ -34,6 +34,14 @@ class _MyHomeFirstState extends State<FirstFlutter> {
     });
   }
 
+  bool flag = false;
+
+  _click() async {
+    setState(() {
+      flag = !flag;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,16 +53,34 @@ class _MyHomeFirstState extends State<FirstFlutter> {
           child: Center(
         child: Text('drawer'),
       )),
-      body: Column(
-        children: [
-          Text('Test!'),
-          Text('Test2'),
-          Text('$_counter'),
-          TextButton(onPressed: () => {print('Test')}, child: Text('Ok')),
-        ],
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            AnimatedOpacity(
+              opacity: flag ? 0.1 : 1.0,
+              duration: Duration(seconds: 3),
+              child:
+                  Text("消えゆく文字", style: Theme.of(context).textTheme.headline4),
+            ),
+            AnimatedSize(
+                duration: Duration(seconds: 3),
+                child: SizedBox(
+                    width: flag ? 50 : 200,
+                    height: flag ? 50 : 200,
+                    child: Container(color: Colors.purple))),
+            AnimatedAlign(
+                duration: Duration(seconds: 3),
+                alignment: flag ? Alignment.topLeft : Alignment.bottomRight,
+                child: SizedBox(
+                    width: 50,
+                    height: 50,
+                    child: Container(color: Colors.green)))
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => _increment(),
+        onPressed: () => _click(),
         tooltip: 'Increment',
         child: Icon(Icons.tiktok),
       ),

@@ -53,32 +53,33 @@ class _MyHomeFirstState extends State<FirstFlutter> {
           child: Center(
         child: Text('drawer'),
       )),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            AnimatedOpacity(
-              opacity: flag ? 0.1 : 1.0,
-              duration: Duration(seconds: 3),
-              child:
-                  Text("消えゆく文字", style: Theme.of(context).textTheme.headline4),
-            ),
-            AnimatedSize(
-                duration: Duration(seconds: 3),
-                child: SizedBox(
-                    width: flag ? 50 : 200,
-                    height: flag ? 50 : 200,
-                    child: Container(color: Colors.purple))),
-            AnimatedAlign(
-                duration: Duration(seconds: 3),
-                alignment: flag ? Alignment.topLeft : Alignment.bottomRight,
-                child: SizedBox(
-                    width: 50,
-                    height: 50,
-                    child: Container(color: Colors.green)))
-          ],
-        ),
-      ),
+      body: TestPage1(),
+      // body: Center(
+      //   child: Column(
+      //     mainAxisAlignment: MainAxisAlignment.center,
+      //     children: <Widget>[
+      //       AnimatedOpacity(
+      //         opacity: flag ? 0.1 : 1.0,
+      //         duration: Duration(seconds: 3),
+      //         child:
+      //             Text("消えゆく文字", style: Theme.of(context).textTheme.headline4),
+      //       ),
+      //       AnimatedSize(
+      //           duration: Duration(seconds: 3),
+      //           child: SizedBox(
+      //               width: flag ? 50 : 200,
+      //               height: flag ? 50 : 200,
+      //               child: Container(color: Colors.purple))),
+      //       AnimatedAlign(
+      //           duration: Duration(seconds: 3),
+      //           alignment: flag ? Alignment.topLeft : Alignment.bottomRight,
+      //           child: SizedBox(
+      //               width: 50,
+      //               height: 50,
+      //               child: Container(color: Colors.green)))
+      //     ],
+      //   ),
+      // ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => _click(),
         tooltip: 'Increment',

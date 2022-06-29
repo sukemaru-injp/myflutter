@@ -11,9 +11,22 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'Startup Name Generator',
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(),
       home: FirstFlutter(),
+    );
+  }
+}
+
+class PikaButton extends StatelessWidget {
+  const PikaButton({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      child: const Text('pikachu'),
+      onPressed: () => {},
     );
   }
 }
@@ -51,8 +64,13 @@ class _MyHomeFirstState extends State<FirstFlutter> {
       ),
       drawer: Drawer(
           child: Center(
-        child: Text('drawer'),
-      )),
+              child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const Text('Drawer',
+              style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold)),
+        ],
+      ))),
       body: TestPage1(),
       // body: Center(
       //   child: Column(

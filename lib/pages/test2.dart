@@ -24,16 +24,8 @@ class TestPage2 extends StatelessWidget {
             const Chip(
               label: Text('electric'),
               backgroundColor: Colors.yellow,
-            )
+            ),
           ],
         ));
-    // child: TextButton(
-    //     onPressed: () => {
-    //           Navigator.of(context)
-    //               .push(MaterialPageRoute(builder: (context) {
-    //             return TestPage1();
-    //           }))
-    //         },
-    //     child: Text("進む", style: TextStyle(fontSize: 50)))));
   }
 }
